@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 
 
 
+
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
@@ -69,3 +70,5 @@ const login = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+module.exports = { register, login };
