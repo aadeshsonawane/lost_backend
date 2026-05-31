@@ -7,8 +7,12 @@ const jwt = require("jsonwebtoken");
 
 
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+const generateToken = (user) => {
+  return jwt.sign(
+    { id: user._id, role: user.role, name: user.name },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
 };
 
 const register = async (req, res) => {
@@ -59,7 +63,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const token = generateToken(user._id);
+   const token = generateToken(user);
 
     res.status(200).json({
       success: true,
