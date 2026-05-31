@@ -1,6 +1,6 @@
 const Item = require("../models/itemModel");
 
-// Report lost item
+
 const reportLost = async (req, res) => {
   try {
     const item = await Item.create({
@@ -14,7 +14,7 @@ const reportLost = async (req, res) => {
   }
 };
 
-// Report found item
+
 const reportFound = async (req, res) => {
   try {
     const item = await Item.create({
@@ -28,7 +28,7 @@ const reportFound = async (req, res) => {
   }
 };
 
-// Get all approved items (public)
+
 const getAllItems = async (req, res) => {
   try {
     const { type, category } = req.query;
@@ -45,7 +45,7 @@ const getAllItems = async (req, res) => {
   }
 };
 
-// Mark as recovered
+
 const markRecovered = async (req, res) => {
   try {
     const item = await Item.findByIdAndUpdate(
@@ -60,7 +60,6 @@ const markRecovered = async (req, res) => {
   }
 };
 
-// ADMIN - get all items
 const adminGetAllItems = async (req, res) => {
   try {
     const items = await Item.find()
@@ -72,7 +71,7 @@ const adminGetAllItems = async (req, res) => {
   }
 };
 
-// ADMIN - approve item
+
 const approveItem = async (req, res) => {
   try {
     const item = await Item.findByIdAndUpdate(
@@ -86,7 +85,7 @@ const approveItem = async (req, res) => {
   }
 };
 
-// ADMIN - delete item
+
 const deleteItem = async (req, res) => {
   try {
     await Item.findByIdAndDelete(req.params.itemId);
